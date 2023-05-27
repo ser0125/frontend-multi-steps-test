@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import './StepsBar.sass';
 
 const STEPS = [
@@ -23,14 +23,35 @@ const STEPS = [
 function StepsBar() {
   return (
     <>
-      <section className="sidebar">
-        {STEPS.map((step, index) => {
-          return (
-            <div key={index + step.name}>
-              <Button variant="outlined">{index}</Button>
-            </div>
-          );
-        })}
+      <section className="section">
+        <div className="steps">
+          {STEPS.map((step, index) => {
+            return (
+              <div className="stepSection" key={index + step.name}>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    color: 'white',
+                    borderColor: 'white',
+                    borderRadius: '50%',
+                    height: '50px',
+                    minWidth: '50px',
+                    width: '50px',
+                    padding: '5px',
+                  }}
+                >
+                  {index}
+                </Button>
+                <div className="stepInfo">
+                  <Typography variant="body2">{step.name}</Typography>
+                  <Typography variant="body1" sx={{ fontWeight: 700 }}>
+                    {step.description}
+                  </Typography>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </section>
     </>
   );
