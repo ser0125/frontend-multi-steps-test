@@ -1,5 +1,5 @@
 import { Button, Input, TextField, Typography } from '@mui/material';
-import './thankForm.sass';
+import './ThankForm.sass';
 import CheckIcon from '@mui/icons-material/Check';
 
 function ThankForm() {
