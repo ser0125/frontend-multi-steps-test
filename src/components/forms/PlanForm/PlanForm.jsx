@@ -5,6 +5,9 @@ import SmartToyIcon from '@mui/icons-material/SmartToy';
 import './PlanForm.sass';
 import { Link } from 'react-router-dom';
 import CardIcon from '../../CardIcon/CardIcon';
+import HeaderForm from '../../HeaderForm/HeaderForm';
+import { useState } from 'react';
+import { useForm } from '../../../FormContext';
 
 const plans = [
   {
@@ -28,21 +31,51 @@ const plans = [
 ];
 
 function PlanForm() {
+  const {
+    state: { plan },
+    dispatch,
+  } = useForm();
+  const [isChecked, setIsChecked] = useState(plan?.billing === 'Yearly' ? true : false);
+  const [planSelected, setPlanSelected] = useState(plan?.subscription);
+
+  const handlePlanSelect = (name) => {
+    setPlanSelected(name);
+  };
+
+  const goToAddons = () => {
+    dispatch({
+      type: 'storePlanInfo',
+      payload: { subscription: planSelected, billing: isChecked === true ? 'Yearly' : 'Monthly' },
+    });
+    navigate('/addons');
+  };
   return (
     <>
       <section className="infoForm">
-        <Typography variant="h1">Select your plan</Typography>
-        <Typography variant="h2" sx={{ paddingTop: '10px' }}>
-          You have the option of monthly or yearly billing.
-        </Typography>
+        <HeaderForm
+          title="Select your plan"
+          description="
+          You have the option of monthly or yearly billing."
+        />
         <div className="planContainer">
           {plans.map((plan, index) => {
-            return <CardIcon key={index + plan.name} {...plan} />;
+            return (
+              <CardIcon
+                key={index + plan.name}
+                {...plan}
+                handlePlanSelect={handlePlanSelect}
+                planSelected={planSelected}
+              />
+            );
           })}
         </div>
         <div className="switchContainer">
           <Typography>Monthly</Typography>
-          <Switch checked={true} onChange={() => {}} inputProps={{ 'aria-label': 'controlled' }} />
+          <Switch
+            checked={isChecked}
+            onChange={() => setIsChecked(!isChecked)}
+            inputProps={{ 'aria-label': 'controlled' }}
+          />
           <Typography>Yearly</Typography>
         </div>
         <div className="buttonContainer">
@@ -52,9 +85,9 @@ function PlanForm() {
             </Link>
           </div>
           <div>
-            <Link to="/addons">
-              <Button variant="contained">Next Step</Button>
-            </Link>
+            <Button variant="contained" onClick={() => goToAddons()}>
+              Next Step
+            </Button>
           </div>
         </div>
       </section>

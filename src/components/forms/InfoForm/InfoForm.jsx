@@ -1,9 +1,10 @@
 import { Button, Typography } from '@mui/material';
 import './InfoForm.sass';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../../FormContext';
 import { useState } from 'react';
 import FormInput from '../../FormInput/FormInput';
+import HeaderForm from '../../HeaderForm/HeaderForm';
 
 const formInputs = [
   {
@@ -29,11 +30,10 @@ const formInputs = [
 function InfoForm() {
   const navigate = useNavigate();
   const { state, dispatch } = useForm();
-  console.log(state);
   const [infoForm, setInfoForm] = useState({
-    name: { value: state.name, error: false },
-    email: { value: state.email, error: false },
-    phone: { value: state.phone, error: false },
+    name: { value: state.personalInfo?.name, error: false },
+    email: { value: state.personalInfo?.email, error: false },
+    phone: { value: state.personalInfo?.phone, error: false },
   });
 
   const handleChangePersonalInfo = (e) => {
@@ -50,11 +50,11 @@ function InfoForm() {
 
   const checkPersonalInfo = () => {
     if (validRequiredFields()) {
-      navigate('/plan');
       dispatch({
         type: 'storePersonalInfo',
         payload: { name: infoForm.name.value, email: infoForm.email.value, phone: infoForm.phone.value },
       });
+      navigate('/plan');
     }
   };
 
@@ -78,10 +78,11 @@ function InfoForm() {
   return (
     <>
       <section className="infoForm">
-        <Typography variant="h1">Personal info</Typography>
-        <Typography variant="h2" sx={{ paddingTop: '10px' }}>
-          Please provide your name, email address, and phone number.
-        </Typography>
+        <HeaderForm
+          title="Personal info"
+          description="
+          Please provide your name, email address, and phone number."
+        />
         <div className="formContainer">
           {formInputs.map((input, index) => (
             <FormInput

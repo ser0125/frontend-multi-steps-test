@@ -1,9 +1,12 @@
 import { Button, Typography } from '@mui/material';
 import './CardIcon.sass';
 
-function CardIcon({ icon, name, cost, backgroundColor }) {
+function CardIcon({ icon, name, cost, backgroundColor, handlePlanSelect, planSelected }) {
   return (
-    <div className="cardContainer">
+    <div
+      className={`cardContainer ${planSelected === name ? `${name}-selected` : ''}`}
+      onClick={() => handlePlanSelect(name)}
+    >
       <div className="cardIcon" style={{ backgroundColor: backgroundColor }}>
         {icon}
       </div>

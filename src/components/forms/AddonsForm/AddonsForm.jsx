@@ -1,6 +1,7 @@
 import { Button, Input, TextField, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import CardCheckbox from '../../CardCheckbox/CardCheckbox';
+import HeaderForm from '../../HeaderForm/HeaderForm';
 
 const addOns = [
   {
@@ -27,10 +28,11 @@ function AddonsForm() {
   return (
     <>
       <section className="infoForm">
-        <Typography variant="h1">Pick add-ons</Typography>
-        <Typography variant="h2" sx={{ paddingTop: '10px' }}>
-          Add-ons help enhance your gaming experience.
-        </Typography>
+        <HeaderForm
+          title="Pick add-ons"
+          description="
+          Add-ons help enhance your gaming experience."
+        />
         <div className="formContainer">
           {addOns.map((addOn) => {
             return <CardCheckbox {...addOn} />;

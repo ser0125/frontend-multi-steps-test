@@ -1,3 +1,8 @@
+@mixin background-opacity($color, $opacity: 0.3)
+    background: $color
+    background: rgba($color, $opacity)
+
+
 .cardIcon
     border-radius: 50%
     width: 40px
@@ -13,3 +18,20 @@
     border: 1px solid #ebe7e7
     border-radius: 4px
     width:25%
+    cursor: pointer
+
+    &:hover
+        @include background-opacity(#483EFF, 0.1)
+        border-color: #483EFF
+
+    &.Arcade-selected
+        @include background-opacity(#FFAF7E, 0.3)
+        border-color: #FFAF7E
+
+    &.Advanced-selected
+        @include background-opacity(#F9818E, 0.3)
+        border-color: #F9818E
+
+    &.Pro-selected
+        @include background-opacity(#483EFF, 0.3)
+        border-color: #483EFF

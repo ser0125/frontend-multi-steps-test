@@ -1,6 +1,7 @@
 import { Button, Input, TextField, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useForm } from '../../../FormContext';
+import HeaderForm from '../../HeaderForm/HeaderForm';
 
 function SummaryForm() {
   const { state } = useForm();
@@ -8,10 +9,11 @@ function SummaryForm() {
   return (
     <>
       <section className="infoForm">
-        <Typography variant="h1">Finishing up</Typography>
-        <Typography variant="h2" sx={{ paddingTop: '10px' }}>
-          Double-check everything looks OK before confirming.
-        </Typography>
+        <HeaderForm
+          title="Finishing up"
+          description="
+          Double-check everything looks OK before confirming."
+        />
         <div className="formContainer">
           <div>
             <div>

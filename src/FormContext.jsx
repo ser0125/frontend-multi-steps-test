@@ -1,9 +1,15 @@
 import React, { createContext } from 'react';
 
 const initialState = {
-  name: '',
-  email: '',
-  phone: '',
+  personalInfo: {
+    name: '',
+    email: '',
+    phone: '',
+  },
+  plan: {
+    billing: 'Monthly',
+    subscription: 'Arcade',
+  },
 };
 
 const FormContext = createContext('');
@@ -11,7 +17,10 @@ const FormContext = createContext('');
 function formReducer(state, action) {
   switch (action.type) {
     case 'storePersonalInfo': {
-      return { name: action.payload.name, email: action.payload.email, phone: action.payload.phone };
+      return { personalInfo: { name: action.payload.name, email: action.payload.email, phone: action.payload.phone } };
+    }
+    case 'storePlanInfo': {
+      return { plan: { billing: action.payload.billing, subscription: action.payload.subscription } };
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
