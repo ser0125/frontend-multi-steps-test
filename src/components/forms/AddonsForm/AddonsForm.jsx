@@ -38,12 +38,12 @@ function AddonsForm() {
         </div>
         <div className="buttonContainer">
           <div>
-            <Link to="/plan">
+            <Link to="/addons">
               <Button color="grey">Go Back</Button>
             </Link>
           </div>
           <div>
-            <Link to="/addons">
+            <Link to="/summary">
               <Button variant="contained">Next Step</Button>
             </Link>
           </div>
