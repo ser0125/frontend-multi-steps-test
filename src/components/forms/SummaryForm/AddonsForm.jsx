@@ -1,7 +1,10 @@
 import { Button, Input, TextField, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useForm } from '../../../FormContext';
 
 function SummaryForm() {
+  const { state } = useForm();
+  console.log(state);
   return (
     <>
       <section className="infoForm">
@@ -32,7 +35,7 @@ function SummaryForm() {
         </Typography>
         <div className="buttonContainer">
           <div>
-            <Link to="/addons">
+            <Link to="/plan">
               <Button color="grey">Go Back</Button>
             </Link>
           </div>

@@ -10,6 +10,7 @@ import PlanForm from './components/forms/PlanForm/PlanForm';
 import AddonsForm from './components/forms/AddonsForm/AddonsForm';
 import SummaryForm from './components/forms/SummaryForm/AddonsForm';
 import ThankForm from './components/forms/ThankForm/ThanksForm';
+import { FormProvider } from './FormContext';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <InfoForm />,
+        element: (
+          <FormProvider>
+            <InfoForm />
+          </FormProvider>
+        ),
       },
       {
         path: '/plan',

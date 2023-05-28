@@ -1,6 +1,7 @@
 import { Button, Typography } from '@mui/material';
 import './StepsBar.sass';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const STEPS = [
   {
@@ -26,6 +27,25 @@ const STEPS = [
 ];
 
 function StepsBar() {
+  const [selected, setSelected] = useState(1);
+  const location = useLocation();
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case '/':
+        setSelected(0);
+        break;
+      case '/plan':
+        setSelected(1);
+        break;
+      case '/addons':
+        setSelected(2);
+        break;
+      default:
+        setSelected(3);
+        break;
+    }
+  }, [location]);
   return (
     <>
       <section className="section">
@@ -33,9 +53,9 @@ function StepsBar() {
           {STEPS.map((step, index) => {
             return (
               <div className="stepSection" key={index + step.name}>
-                <Link to={step.path}>
+                {selected === index ? (
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     color="white"
                     sx={{
                       borderRadius: '50%',
@@ -47,7 +67,24 @@ function StepsBar() {
                   >
                     {index + 1}
                   </Button>
-                </Link>
+                ) : (
+                  <Link to={step.path}>
+                    <Button
+                      variant="outlined"
+                      color="white"
+                      sx={{
+                        borderRadius: '50%',
+                        height: '50px',
+                        minWidth: '50px',
+                        width: '50px',
+                        padding: '5px',
+                      }}
+                    >
+                      {index + 1}
+                    </Button>
+                  </Link>
+                )}
+
                 <div className="stepInfo">
                   <Typography variant="body2" color="lightblue">
                     {step.name}

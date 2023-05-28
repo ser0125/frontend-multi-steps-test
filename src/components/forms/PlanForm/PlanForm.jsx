@@ -36,8 +36,8 @@ function PlanForm() {
           You have the option of monthly or yearly billing.
         </Typography>
         <div className="planContainer">
-          {plans.map((plan) => {
-            return <CardIcon {...plan} />;
+          {plans.map((plan, index) => {
+            return <CardIcon key={index + plan.name} {...plan} />;
           })}
         </div>
         <div className="switchContainer">
