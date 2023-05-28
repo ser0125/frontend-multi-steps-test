@@ -1,9 +1,9 @@
-import { Button, Input, Switch, TextField, Typography } from '@mui/material';
+import { Button, Switch, Typography } from '@mui/material';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import './PlanForm.sass';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CardIcon from '../../CardIcon/CardIcon';
 import HeaderForm from '../../HeaderForm/HeaderForm';
 import { useState } from 'react';
@@ -37,6 +37,7 @@ function PlanForm() {
   } = useForm();
   const [isChecked, setIsChecked] = useState(plan?.billing === 'Yearly' ? true : false);
   const [planSelected, setPlanSelected] = useState(plan?.subscription);
+  const navigate = useNavigate();
 
   const handlePlanSelect = (name) => {
     setPlanSelected(name);
@@ -45,7 +46,11 @@ function PlanForm() {
   const goToAddons = () => {
     dispatch({
       type: 'storePlanInfo',
-      payload: { subscription: planSelected, billing: isChecked === true ? 'Yearly' : 'Monthly' },
+      payload: {
+        subscription: planSelected,
+        billing: isChecked === true ? 'Yearly' : 'Monthly',
+        cost: plans.find((plan) => plan.name === planSelected).cost,
+      },
     });
     navigate('/addons');
   };

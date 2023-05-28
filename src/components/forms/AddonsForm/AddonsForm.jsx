@@ -1,30 +1,45 @@
-import { Button, Input, TextField, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
 import CardCheckbox from '../../CardCheckbox/CardCheckbox';
 import HeaderForm from '../../HeaderForm/HeaderForm';
-
-const addOns = [
-  {
-    name: 'Online service',
-    cost: 1,
-    description: 'Access to multiplayer games',
-    checked: true,
-  },
-  {
-    name: 'Larger storage',
-    cost: 2,
-    description: 'Extra 1TB of cloud save',
-    checked: true,
-  },
-  {
-    name: 'Customizable profile',
-    cost: 2,
-    description: 'Custom theme on your profile',
-    checked: false,
-  },
-];
+import { useForm } from '../../../FormContext';
+import { useEffect, useState } from 'react';
 
 function AddonsForm() {
+  const {
+    state: { addons },
+    dispatch,
+  } = useForm();
+
+  const navigate = useNavigate();
+
+  const [addonsList, setAddonsList] = useState([]);
+
+  useEffect(() => {
+    if (addons) {
+      setAddonsList(addons.map((add) => ({ ...add })));
+    }
+  }, []);
+
+  const handleSelectAdd = (name) => {
+    setAddonsList(
+      addonsList.map((add) => {
+        if (add.name === name) add.checked = !add.checked;
+        return add;
+      }),
+    );
+  };
+
+  const goToSummary = () => {
+    dispatch({
+      type: 'storeAddons',
+      payload: {
+        addonsList,
+      },
+    });
+    navigate('/summary');
+  };
+
   return (
     <>
       <section className="infoForm">
@@ -34,20 +49,21 @@ function AddonsForm() {
           Add-ons help enhance your gaming experience."
         />
         <div className="formContainer">
-          {addOns.map((addOn) => {
-            return <CardCheckbox {...addOn} />;
-          })}
+          {addonsList.length > 0 &&
+            addonsList.map((addOn, index) => {
+              return <CardCheckbox key={index + addOn.name} {...addOn} handleSelectAdd={handleSelectAdd} />;
+            })}
         </div>
         <div className="buttonContainer">
           <div>
-            <Link to="/addons">
+            <Link to="/plan">
               <Button color="grey">Go Back</Button>
             </Link>
           </div>
           <div>
-            <Link to="/summary">
-              <Button variant="contained">Next Step</Button>
-            </Link>
+            <Button variant="contained" onClick={goToSummary}>
+              Next Step
+            </Button>
           </div>
         </div>
       </section>

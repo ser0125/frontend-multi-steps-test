@@ -1,10 +1,10 @@
 import { Button, Checkbox, Typography } from '@mui/material';
 import './CardCheckbox.sass';
 
-function CardCheckbox({ name, description, cost, checked }) {
+function CardCheckbox({ name, description, cost, checked, handleSelectAdd }) {
   return (
     <div className="cardContainerCheckBox">
-      <Checkbox checked={checked} onChange={() => {}} inputProps={{ 'aria-label': 'controlled' }} />
+      <Checkbox checked={checked} onChange={() => handleSelectAdd(name)} inputProps={{ 'aria-label': 'controlled' }} />
       <div className="cardDescriptionCheckBox">
         <Typography variant="body1" color="primary">
           {name}
