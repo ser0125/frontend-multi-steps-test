@@ -4,12 +4,17 @@ import './index.sass';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import PersonalInfo from '../pages/PersonalInfo.jsx';
 import { ThemeProvider } from '@emotion/react';
-import Theme from '../theme';
+import Theme from '../Theme';
+import SelectPlan from '../pages/SelectPlan';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <PersonalInfo />,
+  },
+  {
+    path: '/plan',
+    element: <SelectPlan />,
   },
 ]);
 if (typeof window !== 'undefined') {

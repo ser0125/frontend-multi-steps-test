@@ -1,14 +1,14 @@
-import InfoForm from '../src/components/forms/InfoForm/InfoForm';
 import StepsBar from '../src/components/StepsBar/StepsBar';
+import PlanForm from '../src/components/forms/PlanForm/PlanForm';
 import './PersonalInfo.sass';
 
-function PersonalInfo() {
+function SelectPlan() {
   return (
     <main className="main">
       <StepsBar />
-      <InfoForm />
+      <PlanForm />
     </main>
   );
 }
 
-export default PersonalInfo;
+export default SelectPlan;

@@ -4,6 +4,7 @@ const purpleMain = '#483EFF';
 const lightBlue = '#ABBCFF';
 const denim = '#022959';
 const grey = '#9699AA';
+const white = '#FFFFFF';
 
 export default createTheme({
   typography: {
@@ -24,10 +25,19 @@ export default createTheme({
       fontSize: 20,
       color: grey,
     },
+    h3: {
+      fontSize: 18,
+    },
   },
   palette: {
     primary: {
       main: denim,
+    },
+    white: {
+      main: white,
+    },
+    grey: {
+      main: grey,
     },
   },
 });

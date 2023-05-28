@@ -40,7 +40,7 @@ function StepsBar() {
                     padding: '5px',
                   }}
                 >
-                  {index}
+                  {index + 1}
                 </Button>
                 <div className="stepInfo">
                   <Typography variant="body2">{step.name}</Typography>
