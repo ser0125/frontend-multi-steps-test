@@ -3,6 +3,7 @@ import { createTheme } from '@mui/material/styles';
 const denim = '#022959';
 const grey = '#9699AA';
 const white = '#FFFFFF';
+const purple = '#483EFF';
 
 export default createTheme({
   typography: {
@@ -35,6 +36,9 @@ export default createTheme({
     },
     grey: {
       main: grey,
+    },
+    secondary: {
+      main: purple,
     },
   },
 });

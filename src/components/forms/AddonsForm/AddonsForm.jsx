@@ -7,7 +7,10 @@ import { useEffect, useState } from 'react';
 
 function AddonsForm() {
   const {
-    state: { addons },
+    state: {
+      addons,
+      plan: { billing },
+    },
     dispatch,
   } = useForm();
 
@@ -51,7 +54,9 @@ function AddonsForm() {
         <div className="formContainer">
           {addonsList.length > 0 &&
             addonsList.map((addOn, index) => {
-              return <CardCheckbox key={index + addOn.name} {...addOn} handleSelectAdd={handleSelectAdd} />;
+              return (
+                <CardCheckbox key={index + addOn.name} {...addOn} handleSelectAdd={handleSelectAdd} billing={billing} />
+              );
             })}
         </div>
         <div className="buttonContainer">

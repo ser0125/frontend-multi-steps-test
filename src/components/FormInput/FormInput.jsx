@@ -13,7 +13,18 @@ function FormInput({ label, name, value, placeholder, handleChangePersonalInfo, 
         placeholder={placeholder}
         variant="outlined"
         name={name}
-        inputProps={{ style: { height: '15px' } }}
+        InputProps={{
+          sx: {
+            '&:focus-within fieldset, &:focus-visible fieldset': {
+              border: '1px solid #483EFF!important',
+            },
+          },
+        }}
+        inputProps={{
+          style: {
+            height: '15px',
+          },
+        }}
         {...(error && {
           error,
           helperText: 'This field is required',

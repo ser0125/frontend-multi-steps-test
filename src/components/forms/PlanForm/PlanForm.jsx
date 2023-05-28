@@ -44,12 +44,13 @@ function PlanForm() {
   };
 
   const goToAddons = () => {
+    const costSelected = plans.find((plan) => plan.name === planSelected).cost;
     dispatch({
       type: 'storePlanInfo',
       payload: {
         subscription: planSelected,
         billing: isChecked === true ? 'Yearly' : 'Monthly',
-        cost: plans.find((plan) => plan.name === planSelected).cost,
+        cost: isChecked === true ? costSelected * 10 : costSelected,
       },
     });
     navigate('/addons');
@@ -66,6 +67,7 @@ function PlanForm() {
                 {...plan}
                 handlePlanSelect={handlePlanSelect}
                 planSelected={planSelected}
+                checked={isChecked}
               />
             );
           })}

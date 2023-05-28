@@ -24,14 +24,22 @@ function SummaryForm() {
                   {plan.subscription} ({plan.billing})
                 </Typography>
                 <Link to="/plan">
-                  <Typography variant="body2" color="grey">
+                  <Typography
+                    variant="body2"
+                    color="grey"
+                    sx={{
+                      '&:hover': {
+                        color: '#483EFF',
+                      },
+                    }}
+                  >
                     Change
                   </Typography>
                 </Link>
               </div>
               <div>
                 <Typography variant="body1" color="primary" sx={{ fontWeight: 700 }}>
-                  ${plan.cost}/mo
+                  ${plan.cost}/{plan.billing === 'Yearly' ? 'yr' : 'mo'}
                 </Typography>
               </div>
             </div>
@@ -45,7 +53,7 @@ function SummaryForm() {
                         {add.name}
                       </Typography>
                       <Typography variant="body1" color="primary">
-                        ${add.cost}/mo
+                        ${add.cost}/{plan.billing === 'Yearly' ? 'yr' : 'mo'}
                       </Typography>
                     </div>
                   )
@@ -56,9 +64,9 @@ function SummaryForm() {
         </div>
         <div className="totalSummary">
           <Typography variant="body2" color="grey">
-            Total (per month)
+            Total ({plan.billing === 'Yearly' ? 'per year' : 'per month'})
           </Typography>
-          <Typography variant="body1" color="primary">
+          <Typography variant="h2" color="secondary" sx={{ fontWeight: 700 }}>
             $
             {plan.cost +
               addons.reduce((prev, current) => {
@@ -67,7 +75,7 @@ function SummaryForm() {
                 }
                 return prev;
               }, 0)}
-            /mo
+            /{plan.billing === 'Yearly' ? 'yr' : 'mo'}
           </Typography>
         </div>
         <div className="buttonContainer">
@@ -78,7 +86,9 @@ function SummaryForm() {
           </div>
           <div>
             <Link to="/thanks">
-              <Button variant="contained">Next Step</Button>
+              <Button variant="contained" color="secondary">
+                Confirm
+              </Button>
             </Link>
           </div>
         </div>

@@ -47,6 +47,13 @@ function formReducer(state, action) {
       return {
         ...state,
         plan: { billing: action.payload.billing, subscription: action.payload.subscription, cost: action.payload.cost },
+        addons: [
+          ...(action.payload.billing !== state.plan.billing
+            ? state.addons.map((add) => {
+                return { ...add, cost: action.payload.billing === 'Yearly' ? add.cost * 10 : add.cost / 10 };
+              })
+            : state.addons),
+        ],
       };
     }
     case 'storeAddons': {
