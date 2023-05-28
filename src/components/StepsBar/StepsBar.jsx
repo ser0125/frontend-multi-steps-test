@@ -30,9 +30,8 @@ function StepsBar() {
               <div className="stepSection" key={index + step.name}>
                 <Button
                   variant="outlined"
+                  color="white"
                   sx={{
-                    color: 'white',
-                    borderColor: 'white',
                     borderRadius: '50%',
                     height: '50px',
                     minWidth: '50px',
@@ -43,7 +42,9 @@ function StepsBar() {
                   {index + 1}
                 </Button>
                 <div className="stepInfo">
-                  <Typography variant="body2">{step.name}</Typography>
+                  <Typography variant="body2" color="lightblue">
+                    {step.name}
+                  </Typography>
                   <Typography variant="body1" sx={{ fontWeight: 700 }}>
                     {step.description}
                   </Typography>

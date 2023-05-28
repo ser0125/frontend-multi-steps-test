@@ -3,7 +3,8 @@ import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import './PlanForm.sass';
-import Card from '../../Card/Card';
+import { Link } from 'react-router-dom';
+import CardIcon from '../../CardIcon/CardIcon';
 
 const plans = [
   {
@@ -31,10 +32,12 @@ function PlanForm() {
     <>
       <section className="infoForm">
         <Typography variant="h1">Select your plan</Typography>
-        <Typography variant="h2">You have the option of monthly or yearly billing.</Typography>
+        <Typography variant="h2" sx={{ paddingTop: '10px' }}>
+          You have the option of monthly or yearly billing.
+        </Typography>
         <div className="planContainer">
           {plans.map((plan) => {
-            return <Card {...plan} />;
+            return <CardIcon {...plan} />;
           })}
         </div>
         <div className="switchContainer">
@@ -44,10 +47,14 @@ function PlanForm() {
         </div>
         <div className="buttonContainer">
           <div>
-            <Button color="grey">Go Back</Button>
+            <Link to="/">
+              <Button color="grey">Go Back</Button>
+            </Link>
           </div>
           <div>
-            <Button variant="contained">Next Step</Button>
+            <Link to="/addons">
+              <Button variant="contained">Next Step</Button>
+            </Link>
           </div>
         </div>
       </section>

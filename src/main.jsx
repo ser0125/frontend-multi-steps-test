@@ -2,19 +2,30 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.sass';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import PersonalInfo from '../pages/PersonalInfo.jsx';
 import { ThemeProvider } from '@emotion/react';
 import Theme from '../Theme';
-import SelectPlan from '../pages/SelectPlan';
+import Layout from '../pages/Layout.jsx';
+import InfoForm from './components/forms/InfoForm/InfoForm';
+import PlanForm from './components/forms/PlanForm/PlanForm';
+import AddonsForm from './components/forms/AddonsForm/AddonsForm';
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <PersonalInfo />,
-  },
-  {
-    path: '/plan',
-    element: <SelectPlan />,
+    element: <Layout />,
+    children: [
+      {
+        path: '/',
+        element: <InfoForm />,
+      },
+      {
+        path: '/plan',
+        element: <PlanForm />,
+      },
+      {
+        path: '/addons',
+        element: <AddonsForm />,
+      },
+    ],
   },
 ]);
 if (typeof window !== 'undefined') {

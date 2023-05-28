@@ -1,7 +1,5 @@
 import { createTheme } from '@mui/material';
 
-const purpleMain = '#483EFF';
-const lightBlue = '#ABBCFF';
 const denim = '#022959';
 const grey = '#9699AA';
 const white = '#FFFFFF';
@@ -10,7 +8,6 @@ export default createTheme({
   typography: {
     body2: {
       fontSize: 14,
-      color: lightBlue,
     },
     body1: {
       fontSize: 16,

@@ -1,8 +1,7 @@
 import { Button, Typography } from '@mui/material';
-import './Card.sass';
+import './CardIcon.sass';
 
-function Card({ icon, name, cost, backgroundColor }) {
-  console.log(icon);
+function CardIcon({ icon, name, cost, backgroundColor }) {
   return (
     <div className="cardContainer">
       <div className="cardIcon" style={{ backgroundColor: backgroundColor }}>
@@ -11,11 +10,11 @@ function Card({ icon, name, cost, backgroundColor }) {
       <Typography variant="h3" color="primary">
         {name}
       </Typography>
-      <Typography variant="body1" color="grey">
+      <Typography variant="body1" color="grey" sx={{ paddingTop: '8px' }}>
         ${cost}/mo
       </Typography>
     </div>
   );
 }
 
-export default Card;
+export default CardIcon;
