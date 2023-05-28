@@ -22,4 +22,8 @@ To install all the dependencies of the proyect
 
 Runs the app in the development mode.
 
+### `npm run test`
+
+Runs the tests (Use of vitest instead of jest to control the tests)
+
 #### Aditional note

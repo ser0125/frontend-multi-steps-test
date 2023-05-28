@@ -57,11 +57,7 @@ function PlanForm() {
   return (
     <>
       <section className="infoForm">
-        <HeaderForm
-          title="Select your plan"
-          description="
-          You have the option of monthly or yearly billing."
-        />
+        <HeaderForm title="Select your plan" description="You have the option of monthly or yearly billing." />
         <div className="planContainer">
           {plans.map((plan, index) => {
             return (

@@ -4,6 +4,7 @@ import './CardIcon.sass';
 function CardIcon({ icon, name, cost, backgroundColor, handlePlanSelect, planSelected }) {
   return (
     <div
+      data-testid={`custom-card-container-${name}`}
       className={`cardContainer ${planSelected === name ? `${name}-selected` : ''}`}
       onClick={() => handlePlanSelect(name)}
     >

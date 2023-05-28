@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 
 const denim = '#022959';
 const grey = '#9699AA';

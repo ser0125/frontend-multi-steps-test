@@ -37,10 +37,10 @@ function SummaryForm() {
             </div>
             <hr />
             <div className="addSummaryContainer">
-              {addons.map((add) => {
+              {addons.map((add, index) => {
                 return (
                   add.checked && (
-                    <div className="addSummary">
+                    <div className="addSummary" key={index + add.name}>
                       <Typography variant="body2" color="grey">
                         {add.name}
                       </Typography>

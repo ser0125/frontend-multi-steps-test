@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.sass';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from '@emotion/react';
+import { ThemeProvider } from '@mui/material/styles';
 import Theme from '../Theme';
 import Layout from '../pages/Layout.jsx';
 import InfoForm from './components/forms/InfoForm/InfoForm';
