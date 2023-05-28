@@ -27,3 +27,7 @@ Runs the app in the development mode.
 Runs the tests (Use of vitest instead of jest to control the tests)
 
 #### Aditional note
+
+You can see the application deployed on railway
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://frontend-multi-steps-test-production.up.railway.app/)
