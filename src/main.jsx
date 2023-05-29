@@ -4,7 +4,7 @@ import './index.sass';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import Theme from '../Theme';
-import Layout from '../pages/Layout.jsx';
+import Layout from './pages/Layout.jsx';
 import InfoForm from './components/forms/InfoForm/InfoForm';
 import PlanForm from './components/forms/PlanForm/PlanForm';
 import AddonsForm from './components/forms/AddonsForm/AddonsForm';

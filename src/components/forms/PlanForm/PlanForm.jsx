@@ -8,6 +8,7 @@ import CardIcon from '../../CardIcon/CardIcon';
 import HeaderForm from '../../HeaderForm/HeaderForm';
 import { useState } from 'react';
 import { useForm } from '../../../FormContext';
+import FooterForm from '../../FooterForm/FooterForm';
 
 const plans = [
   {
@@ -44,16 +45,20 @@ function PlanForm() {
   };
 
   const goToAddons = () => {
-    const costSelected = plans.find((plan) => plan.name === planSelected).cost;
-    dispatch({
-      type: 'storePlanInfo',
-      payload: {
-        subscription: planSelected,
-        billing: isChecked === true ? 'Yearly' : 'Monthly',
-        cost: isChecked === true ? costSelected * 10 : costSelected,
-      },
-    });
-    navigate('/addons');
+    if (planSelected) {
+      const costSelected = plans.find((plan) => plan.name === planSelected).cost;
+      dispatch({
+        type: 'storePlanInfo',
+        payload: {
+          subscription: planSelected,
+          billing: isChecked === true ? 'Yearly' : 'Monthly',
+          cost: isChecked === true ? costSelected * 10 : costSelected,
+        },
+      });
+      navigate('/addons');
+    } else {
+      alert('Choose a plan before continuing');
+    }
   };
   return (
     <>
@@ -81,18 +86,7 @@ function PlanForm() {
           />
           <Typography>Yearly</Typography>
         </div>
-        <div className="buttonContainer">
-          <div>
-            <Link to="/">
-              <Button color="grey">Go Back</Button>
-            </Link>
-          </div>
-          <div>
-            <Button variant="contained" onClick={() => goToAddons()}>
-              Next Step
-            </Button>
-          </div>
-        </div>
+        <FooterForm handleNextButton={goToAddons} previousPath="/" />
       </section>
     </>
   );

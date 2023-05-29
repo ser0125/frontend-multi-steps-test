@@ -1,13 +1,15 @@
 import { Button, Input, TextField, Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from '../../../FormContext';
 import HeaderForm from '../../HeaderForm/HeaderForm';
 import './SummaryForm.sass';
+import FooterForm from '../../FooterForm/FooterForm';
 
 function SummaryForm() {
   const {
     state: { plan, addons, totalCost },
   } = useForm();
+  const navigate = useNavigate();
   return (
     <>
       <section className="infoForm">
@@ -78,20 +80,12 @@ function SummaryForm() {
             /{plan.billing === 'Yearly' ? 'yr' : 'mo'}
           </Typography>
         </div>
-        <div className="buttonContainer">
-          <div>
-            <Link to="/addons">
-              <Button color="grey">Go Back</Button>
-            </Link>
-          </div>
-          <div>
-            <Link to="/thanks">
-              <Button variant="contained" color="secondary">
-                Confirm
-              </Button>
-            </Link>
-          </div>
-        </div>
+        <FooterForm
+          handleNextButton={() => navigate('/thanks')}
+          previousPath="/addons"
+          nextText="Confirm"
+          nextColor="secondary"
+        />
       </section>
     </>
   );

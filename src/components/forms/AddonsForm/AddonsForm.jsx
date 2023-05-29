@@ -4,6 +4,7 @@ import CardCheckbox from '../../CardCheckbox/CardCheckbox';
 import HeaderForm from '../../HeaderForm/HeaderForm';
 import { useForm } from '../../../FormContext';
 import { useEffect, useState } from 'react';
+import FooterForm from '../../FooterForm/FooterForm';
 
 function AddonsForm() {
   const {
@@ -59,18 +60,7 @@ function AddonsForm() {
               );
             })}
         </div>
-        <div className="buttonContainer">
-          <div>
-            <Link to="/plan">
-              <Button color="grey">Go Back</Button>
-            </Link>
-          </div>
-          <div>
-            <Button variant="contained" onClick={goToSummary}>
-              Next Step
-            </Button>
-          </div>
-        </div>
+        <FooterForm handleNextButton={goToSummary} previousPath="/plan" />
       </section>
     </>
   );

@@ -7,9 +7,9 @@ const initialState = {
     phone: '',
   },
   plan: {
-    billing: 'Monthly',
-    subscription: 'Arcade',
-    cost: 9,
+    billing: '',
+    subscription: '',
+    cost: 0,
   },
   addons: [
     {
@@ -31,6 +31,32 @@ const initialState = {
       checked: false,
     },
   ],
+  steps: [
+    {
+      name: 'STEP 1',
+      description: 'YOUR INFO',
+      path: '/',
+      disabled: false,
+    },
+    {
+      name: 'STEP 2',
+      description: 'SELECT PLAN',
+      path: '/plan',
+      disabled: true,
+    },
+    {
+      name: 'STEP 3',
+      description: 'ADD-ONS',
+      path: '/addons',
+      disabled: true,
+    },
+    {
+      name: 'STEP 4',
+      description: 'SUMMARY',
+      path: '/summary',
+      disabled: true,
+    },
+  ],
 };
 
 const FormContext = createContext('');
@@ -41,6 +67,11 @@ function formReducer(state, action) {
       return {
         ...state,
         personalInfo: { name: action.payload.name, email: action.payload.email, phone: action.payload.phone },
+        steps: [
+          ...state.steps.map((step) => {
+            return step.name === 'STEP 2' ? { ...step, disabled: false } : { ...step };
+          }),
+        ],
       };
     }
     case 'storePlanInfo': {
@@ -48,11 +79,16 @@ function formReducer(state, action) {
         ...state,
         plan: { billing: action.payload.billing, subscription: action.payload.subscription, cost: action.payload.cost },
         addons: [
-          ...(action.payload.billing !== state.plan.billing
+          ...(state.plan.billing && action.payload.billing !== state.plan.billing
             ? state.addons.map((add) => {
                 return { ...add, cost: action.payload.billing === 'Yearly' ? add.cost * 10 : add.cost / 10 };
               })
             : state.addons),
+        ],
+        steps: [
+          ...state.steps.map((step) => {
+            return step.name === 'STEP 3' || step.name === 'STEP 4' ? { ...step, disabled: false } : { ...step };
+          }),
         ],
       };
     }

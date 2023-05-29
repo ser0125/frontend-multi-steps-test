@@ -1,37 +1,28 @@
-import { Button, Typography } from '@mui/material';
+import { Button, Typography, useMediaQuery } from '@mui/material';
 import './StepsBar.sass';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
-const STEPS = [
-  {
-    name: 'STEP 1',
-    description: 'YOUR INFO',
-    path: '/',
-  },
-  {
-    name: 'STEP 2',
-    description: 'SELECT PLAN',
-    path: '/plan',
-  },
-  {
-    name: 'STEP 3',
-    description: 'ADD-ONS',
-    path: '/addons',
-  },
-  {
-    name: 'STEP 4',
-    description: 'SUMMARY',
-    path: '/summary',
-  },
-];
+import { useForm } from '../../FormContext';
 
 function StepsBar() {
   const [selected, setSelected] = useState(1);
+  const {
+    state: { steps },
+    dispatch,
+  } = useForm();
+  const [stepsList, setStepList] = useState([]);
   const location = useLocation();
+  const navigate = useNavigate();
+  const mobileScreen = useMediaQuery('(max-width:960px)');
 
   useEffect(() => {
-    switch (location.pathname) {
+    if (steps) {
+      setStepList(steps.map((step) => ({ ...step })));
+    }
+  }, [location]);
+
+  const selectStep = (path) => {
+    switch (path) {
       case '/':
         setSelected(0);
         break;
@@ -45,54 +36,48 @@ function StepsBar() {
         setSelected(3);
         break;
     }
+  };
+
+  useEffect(() => {
+    selectStep(location.pathname);
   }, [location]);
+
   return (
     <>
       <section className="section">
         <div className="steps">
-          {STEPS.map((step, index) => {
+          {stepsList.map((step, index) => {
             return (
               <div className="stepSection" key={index + step.name}>
-                {selected === index ? (
-                  <Button
-                    variant="contained"
-                    color="white"
-                    sx={{
-                      borderRadius: '50%',
-                      height: '50px',
-                      minWidth: '50px',
-                      width: '50px',
-                      padding: '5px',
-                    }}
-                  >
-                    {index + 1}
-                  </Button>
-                ) : (
-                  <Link to={step.path}>
-                    <Button
-                      variant="outlined"
-                      color="white"
-                      sx={{
-                        borderRadius: '50%',
-                        height: '50px',
-                        minWidth: '50px',
-                        width: '50px',
-                        padding: '5px',
-                      }}
-                    >
-                      {index + 1}
-                    </Button>
-                  </Link>
+                <Button
+                  variant={selected === index ? 'contained' : 'outlined'}
+                  color="white"
+                  disabled={step.disabled}
+                  onClick={() => navigate(step.path)}
+                  sx={{
+                    borderRadius: '50%',
+                    height: '50px',
+                    minWidth: '50px',
+                    width: '50px',
+                    padding: '5px',
+                    '&:disabled': {
+                      color: 'rgb(253 253 253 / 40%)',
+                      border: '1px solid rgb(253 253 253 / 40%)',
+                    },
+                  }}
+                >
+                  {index + 1}
+                </Button>
+                {!mobileScreen && (
+                  <div className="stepInfo">
+                    <Typography variant="body2" color="lightblue">
+                      {step.name}
+                    </Typography>
+                    <Typography variant="body1" sx={{ fontWeight: 700 }}>
+                      {step.description}
+                    </Typography>
+                  </div>
                 )}
-
-                <div className="stepInfo">
-                  <Typography variant="body2" color="lightblue">
-                    {step.name}
-                  </Typography>
-                  <Typography variant="body1" sx={{ fontWeight: 700 }}>
-                    {step.description}
-                  </Typography>
-                </div>
               </div>
             );
           })}

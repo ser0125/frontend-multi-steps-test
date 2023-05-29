@@ -27,6 +27,8 @@ const formInputs = [
   },
 ];
 
+const isEmail = (email) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
+
 function InfoForm() {
   const navigate = useNavigate();
   const { state, dispatch } = useForm();
@@ -35,21 +37,23 @@ function InfoForm() {
     email: { value: state.personalInfo?.email, error: false },
     phone: { value: state.personalInfo?.phone, error: false },
   });
-
   const handleChangePersonalInfo = (e) => {
     const value = e.target.value;
     const name = e.target.name;
     setInfoForm((prevState) => ({
       ...prevState,
       [name]: {
-        error: false,
+        error: {
+          state: false,
+          msg: '',
+        },
         value,
       },
     }));
   };
 
   const checkPersonalInfo = () => {
-    if (validRequiredFields()) {
+    if (validateFormFields()) {
       dispatch({
         type: 'storePersonalInfo',
         payload: { name: infoForm.name.value, email: infoForm.email.value, phone: infoForm.phone.value },
@@ -58,7 +62,11 @@ function InfoForm() {
     }
   };
 
-  const validRequiredFields = () => {
+  const validateFormFields = () => {
+    return validateRequiredFields() && validateEmail();
+  };
+
+  const validateRequiredFields = () => {
     let isValid = true;
     formInputs.forEach((input) => {
       if (input.required && !infoForm[input.name].value) {
@@ -66,12 +74,33 @@ function InfoForm() {
           ...prevState,
           [input.name]: {
             ...prevState[input.name],
-            error: true,
+            error: {
+              state: true,
+              msg: 'This field is required',
+            },
           },
         }));
         isValid = false;
       }
     });
+    return isValid;
+  };
+
+  const validateEmail = () => {
+    let isValid = true;
+    if (!infoForm.email.error.state && !isEmail(infoForm.email.value)) {
+      setInfoForm((prevState) => ({
+        ...prevState,
+        email: {
+          ...prevState.email,
+          error: {
+            state: true,
+            msg: 'Invalid email, Please check if the email was misspelled',
+          },
+        },
+      }));
+      isValid = false;
+    }
     return isValid;
   };
 

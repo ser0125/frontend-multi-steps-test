@@ -26,8 +26,8 @@ function FormInput({ label, name, value, placeholder, handleChangePersonalInfo, 
           },
         }}
         {...(error && {
-          error,
-          helperText: 'This field is required',
+          error: error.state,
+          helperText: error.msg,
         })}
       />
     </div>
