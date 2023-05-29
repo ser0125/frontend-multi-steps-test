@@ -7,7 +7,7 @@ const initialState = {
     phone: '',
   },
   plan: {
-    billing: '',
+    billing: 'Monthly',
     subscription: '',
     cost: 0,
   },
@@ -79,7 +79,7 @@ function formReducer(state, action) {
         ...state,
         plan: { billing: action.payload.billing, subscription: action.payload.subscription, cost: action.payload.cost },
         addons: [
-          ...(state.plan.billing && action.payload.billing !== state.plan.billing
+          ...(action.payload.billing !== state.plan.billing
             ? state.addons.map((add) => {
                 return { ...add, cost: action.payload.billing === 'Yearly' ? add.cost * 10 : add.cost / 10 };
               })

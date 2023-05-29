@@ -5,6 +5,7 @@ import { useForm } from '../../../FormContext';
 import { useState } from 'react';
 import FormInput from '../../FormInput/FormInput';
 import HeaderForm from '../../HeaderForm/HeaderForm';
+import FooterForm from '../../FooterForm/FooterForm';
 
 const formInputs = [
   {
@@ -52,7 +53,7 @@ function InfoForm() {
     }));
   };
 
-  const checkPersonalInfo = () => {
+  const goToPlan = () => {
     if (validateFormFields()) {
       dispatch({
         type: 'storePersonalInfo',
@@ -122,11 +123,7 @@ function InfoForm() {
               error={infoForm[input.name].error}
             />
           ))}
-          <div className="nextStepContainer">
-            <Button variant="contained" onClick={() => checkPersonalInfo()}>
-              Next Step
-            </Button>
-          </div>
+          <FooterForm onlyNextButton={true} handleNextButton={goToPlan} />
         </div>
       </section>
     </>

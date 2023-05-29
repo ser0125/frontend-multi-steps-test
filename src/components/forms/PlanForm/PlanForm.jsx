@@ -57,7 +57,7 @@ function PlanForm() {
       });
       navigate('/addons');
     } else {
-      alert('Choose a plan before continuing');
+      alert('Choose a plan before proceeding');
     }
   };
   return (
