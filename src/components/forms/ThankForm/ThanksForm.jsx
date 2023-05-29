@@ -1,8 +1,9 @@
-import { Button, Input, TextField, Typography } from '@mui/material';
+import { Typography, useMediaQuery } from '@mui/material';
 import './ThankForm.sass';
 import CheckIcon from '@mui/icons-material/Check';
 
 function ThankForm() {
+  const mobileScreen = useMediaQuery('(max-width:960px)');
   return (
     <>
       <section className="thankForm">
@@ -11,7 +12,7 @@ function ThankForm() {
             <CheckIcon htmlColor="#E96170" />
           </div>
         </div>
-        <Typography variant="h1" sx={{ padding: '10px' }}>
+        <Typography variant={mobileScreen ? 'h3' : 'h1'} color="primary" sx={{ padding: '10px', fontWeight: 700 }}>
           Thank you!
         </Typography>
         <Typography variant="body1">

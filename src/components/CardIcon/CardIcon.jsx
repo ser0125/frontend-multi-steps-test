@@ -11,17 +11,19 @@ function CardIcon({ icon, name, cost, backgroundColor, handlePlanSelect, planSel
       <div className="cardIcon" style={{ backgroundColor: backgroundColor }}>
         {icon}
       </div>
-      <Typography variant="h3" color="primary">
-        {name}
-      </Typography>
-      <Typography variant="body1" color="grey" sx={{ paddingTop: '8px' }}>
-        ${checked ? cost * 10 : cost}/{checked ? 'yr' : 'mo'}
-      </Typography>
-      {checked && (
-        <Typography variant="body2" color="primary">
-          2 months free
+      <div>
+        <Typography variant="body1" color="primary">
+          {name}
         </Typography>
-      )}
+        <Typography variant="body2" color="grey" sx={{ paddingTop: '8px' }}>
+          ${checked ? cost * 10 : cost}/{checked ? 'yr' : 'mo'}
+        </Typography>
+        {checked && (
+          <Typography variant="h6" color="primary">
+            2 months free
+          </Typography>
+        )}
+      </div>
     </div>
   );
 }

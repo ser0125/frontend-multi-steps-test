@@ -19,12 +19,17 @@ export default createTheme({
       color: denim,
       fontWeight: 700,
     },
-    h2: {
-      fontSize: 20,
-      color: grey,
-    },
     h3: {
+      fontSize: 24,
+    },
+    h4: {
+      fontSize: 20,
+    },
+    h5: {
       fontSize: 18,
+    },
+    h6: {
+      fontSize: 12,
     },
   },
   palette: {

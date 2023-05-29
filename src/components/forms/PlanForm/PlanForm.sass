@@ -1,3 +1,6 @@
+@import '../../../variables.sass'
+
+
 .planContainer
     display: flex
     padding: 40px 0px
@@ -10,3 +13,11 @@
     height: 48px
     background-color: #F8F9FF
     padding-top: 10px
+
+@media (max-width: $layout-breakpoint-mobile)
+    .planContainer
+        flex-direction: column
+        padding: 10px 0px
+
+    .switchContainer
+        margin-bottom: 10px

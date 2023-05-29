@@ -1,4 +1,4 @@
-import { Button, Input, TextField, Typography } from '@mui/material';
+import { Typography, useMediaQuery } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from '../../../FormContext';
 import HeaderForm from '../../HeaderForm/HeaderForm';
@@ -6,6 +6,7 @@ import './SummaryForm.sass';
 import FooterForm from '../../FooterForm/FooterForm';
 
 function SummaryForm() {
+  const mobileScreen = useMediaQuery('(max-width:960px)');
   const {
     state: { plan, addons, totalCost },
   } = useForm();
@@ -22,7 +23,7 @@ function SummaryForm() {
           <div className="summaryContainer">
             <div className="planSummaryContainer">
               <div>
-                <Typography variant="body1" color="primary">
+                <Typography variant={mobileScreen ? 'body2' : 'body1'} color="primary">
                   {plan.subscription} ({plan.billing})
                 </Typography>
                 <Link to="/plan">
@@ -40,7 +41,7 @@ function SummaryForm() {
                 </Link>
               </div>
               <div>
-                <Typography variant="body1" color="primary" sx={{ fontWeight: 700 }}>
+                <Typography variant={mobileScreen ? 'body2' : 'body1'} color="primary" sx={{ fontWeight: 700 }}>
                   ${plan.cost}/{plan.billing === 'Yearly' ? 'yr' : 'mo'}
                 </Typography>
               </div>
@@ -54,7 +55,7 @@ function SummaryForm() {
                       <Typography variant="body2" color="grey">
                         {add.name}
                       </Typography>
-                      <Typography variant="body1" color="primary">
+                      <Typography variant={mobileScreen ? 'body2' : 'body1'} color="primary">
                         ${add.cost}/{plan.billing === 'Yearly' ? 'yr' : 'mo'}
                       </Typography>
                     </div>
@@ -68,7 +69,7 @@ function SummaryForm() {
           <Typography variant="body2" color="grey">
             Total ({plan.billing === 'Yearly' ? 'per year' : 'per month'})
           </Typography>
-          <Typography variant="h2" color="secondary" sx={{ fontWeight: 700 }}>
+          <Typography variant={mobileScreen ? 'body1' : 'h4'} color="secondary" sx={{ fontWeight: 700 }}>
             $
             {plan.cost +
               addons.reduce((prev, current) => {

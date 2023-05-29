@@ -1,3 +1,5 @@
+@import '../../../variables.sass'
+
 .infoForm
     padding: 50px 60px
     width: 100%
@@ -5,3 +7,11 @@
 
 .formContainer
     padding-top: 30px
+
+@media (max-width: $layout-breakpoint-mobile)
+    .infoForm
+        padding: 5px
+        position: static
+
+    .formContainer
+        padding-top: 15px

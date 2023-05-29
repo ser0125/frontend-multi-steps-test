@@ -1,3 +1,5 @@
+@import '../../variables.sass'
+
 .buttonContainer
     display: flex
     justify-content: space-between
@@ -7,3 +9,22 @@
 
 .left-align
     left: 75px
+
+@media (max-width: $layout-breakpoint-mobile)
+    .buttonContainer
+        width: 100%
+        background-color: white
+        right: 0px
+        justify-content: end
+        align-items: center
+        height: 72px
+
+    .backButton
+        margin-left: 20px
+
+    .nextButton
+        margin-right: 20px
+
+    .left-align
+        left: 0px
+        justify-content: space-between

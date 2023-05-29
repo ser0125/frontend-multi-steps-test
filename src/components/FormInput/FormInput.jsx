@@ -1,10 +1,11 @@
-import { TextField, Typography } from '@mui/material';
+import { TextField, Typography, useMediaQuery } from '@mui/material';
 import './FormInput.sass';
 
 function FormInput({ label, name, value, placeholder, handleChangePersonalInfo, error }) {
+  const mobileScreen = useMediaQuery('(max-width:960px)');
   return (
     <div className="formInput">
-      <Typography variant="body1" color="primary">
+      <Typography variant={mobileScreen ? 'h6' : 'body1'} color="primary">
         {label}
       </Typography>
       <TextField
@@ -22,7 +23,7 @@ function FormInput({ label, name, value, placeholder, handleChangePersonalInfo, 
         }}
         inputProps={{
           style: {
-            height: '15px',
+            height: mobileScreen ? '7px' : '15px',
           },
         }}
         {...(error && {

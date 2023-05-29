@@ -1,3 +1,5 @@
+@import '../../variables.sass'
+
 .cardContainerCheckBox
     display: flex
     padding: 15px
@@ -13,3 +15,7 @@
 
 .cardDescriptionCheckBox
     width: 100%
+
+@media (max-width: $layout-breakpoint-mobile)
+    .cardContainerCheckBox
+        width: auto

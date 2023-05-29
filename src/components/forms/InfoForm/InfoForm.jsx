@@ -1,4 +1,3 @@
-import { Button, Typography } from '@mui/material';
 import './InfoForm.sass';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from '../../../FormContext';
@@ -33,11 +32,13 @@ const isEmail = (email) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(emai
 function InfoForm() {
   const navigate = useNavigate();
   const { state, dispatch } = useForm();
+
   const [infoForm, setInfoForm] = useState({
     name: { value: state.personalInfo?.name, error: false },
     email: { value: state.personalInfo?.email, error: false },
     phone: { value: state.personalInfo?.phone, error: false },
   });
+
   const handleChangePersonalInfo = (e) => {
     const value = e.target.value;
     const name = e.target.name;

@@ -12,7 +12,7 @@ function FooterForm({
   return (
     <div className={`buttonContainer ${!onlyNextButton ? 'left-align' : ''}`}>
       {!onlyNextButton && (
-        <div>
+        <div className="backButton">
           <Link to={previousPath}>
             <Button
               color="grey"
@@ -27,7 +27,7 @@ function FooterForm({
           </Link>
         </div>
       )}
-      <div>
+      <div className="nextButton">
         <Button variant="contained" onClick={handleNextButton} color={nextColor}>
           {nextText}
         </Button>

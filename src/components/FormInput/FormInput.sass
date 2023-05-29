@@ -1,4 +1,11 @@
+@import '../../variables.sass'
+
+
 .formInput
     padding: 15px
     display: flex
     flex-direction: column
+
+@media (max-width: $layout-breakpoint-mobile)
+    .formInput
+        padding: 5px
