@@ -1,7 +1,7 @@
 import { TextField, Typography, useMediaQuery } from '@mui/material';
 import './FormInput.sass';
 
-function FormInput({ label, name, value, placeholder, handleChangePersonalInfo, error }) {
+function FormInput({ label, name, value, placeholder, handleChangePersonalInfo, type, error }) {
   const mobileScreen = useMediaQuery('(max-width:960px)');
   return (
     <div className="formInput">
@@ -13,6 +13,7 @@ function FormInput({ label, name, value, placeholder, handleChangePersonalInfo, 
         onChange={(e) => handleChangePersonalInfo(e)}
         placeholder={placeholder}
         variant="outlined"
+        type={type}
         name={name}
         InputProps={{
           sx: {

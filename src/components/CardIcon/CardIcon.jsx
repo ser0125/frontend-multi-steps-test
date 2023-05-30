@@ -2,7 +2,7 @@ import { Button, Typography, useMediaQuery } from '@mui/material';
 import './CardIcon.sass';
 
 function CardIcon({ icon, name, cost, backgroundColor, handlePlanSelect, planSelected, checked }) {
-  const mobileScreen = useMediaQuery('(max-height:760px)');
+  const mobileScreen = useMediaQuery('(max-width:960px)');
 
   return (
     <div
